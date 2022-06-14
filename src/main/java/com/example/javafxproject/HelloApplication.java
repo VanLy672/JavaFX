@@ -79,8 +79,8 @@ public class HelloApplication extends Application {
             Image image = new Image(productList.get(i).getImage());
             ImageView imageView = new ImageView();
             imageView.setImage(image);
-            imageView.setFitWidth(110);
-            imageView.setFitHeight(110);
+            imageView.setFitWidth(160);
+            imageView.setFitHeight(160);
 
             grid.add(new Label (productList.get(i).getName()), 0, i+2);
             grid.add(imageView, 1, i+2);
