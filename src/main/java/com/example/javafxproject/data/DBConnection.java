@@ -1,9 +1,11 @@
 package com.example.javafxproject.data;
 
+import com.example.javafxproject.Admin;
 import com.example.javafxproject.data.models.StudentIcon;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class DBConnection {
     private final Connection connection;
@@ -65,5 +67,21 @@ public class DBConnection {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public List<Admin> getAdmin() {
+        ArrayList<Admin> admins = new ArrayList<>();
+        try {
+            var result = this.connection.prepareStatement("Select * from admin").executeQuery();
+            while (result.next()) {
+                int id = result.getInt("id");
+                String name = result.getString("username");
+                String password = result.getString("pass");
+                admins.add(new Admin(id, name, password));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return admins;
     }
 }
